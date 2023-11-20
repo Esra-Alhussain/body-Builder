@@ -1,0 +1,225 @@
+body{
+    margin:0;
+    padding: 0;
+    /* display: flex; */
+    align-items: center; 
+    justify-content: center; 
+   
+}
+#nav-bar{
+    display:flex;
+    /* flex:1; */
+    justify-content: center;
+    height: 7vh; 
+}
+#nav-bar ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#nav-bar nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+#nav-bar li{
+    margin: 0 15px;
+}
+#nav-bar a{
+    text-decoration: none;
+}
+#first-wave{
+    
+    display: flex;
+    flex-direction:  column;
+    text-align: center;
+    height: 60vh;
+    /* background-image: url(./layer5.svg); */
+    font-size: larger;
+}
+.spacer{
+    aspect-ratio: 960/300;
+    display: flex;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-color: blanchedalmond;
+    text-align: center;
+    height: 60vh;
+    background-image: url(./img/BG.png);
+    margin-bottom: 40px;
+
+}
+/* .spacer{
+    aspect-ratio: 960/300;
+    display: flex;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-color: blanchedalmond;
+    text-align: center;
+    height: 60vh;
+    background-image: url(./img/layered-waves.svg);
+
+} */
+.layer{
+    background-image: url(./img/layered-waves-haikei.svg);
+    
+}
+/* .layer{
+    background-image: url(./img/layered-waves.svg);
+    background-position: center top; 
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 60vh;
+    font-size: larger;
+} */
+
+.new-wave{
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.new-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 180px;
+}
+
+.new-wave.shape-fill {
+    fill: #4319db;
+}
+
+
+
+.container{
+    font-size: 3rem;
+}
+.organs-categories{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+   
+}
+#first-row{
+    display: flex;  
+    flex-direction: row;
+    margin: 20px;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+#second-row{
+    display: flex; 
+    flex-direction: row;
+    margin: 20px;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    
+}
+
+.card-container{
+    flex:1;
+    padding: 20px;
+    margin: 30px;
+    border: 3px red solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: brown;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.wave-fromGetWave{
+    aspect-ratio: 960/300;
+    display: flex;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-color: blanchedalmond;
+    text-align: center;
+    height: 60vh;
+    margin-top:0;
+    padding: 0;
+    background-image: url(./img/wave.svg);
+}
+
+.wave-below{
+    aspect-ratio: 960/300;
+    display: flex;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-color: blanchedalmond;
+    text-align: center;
+    height: 60vh;
+    margin-top:0;
+    padding: 0;
+    background-image: url(./img/wave-below.svg);
+}
+.wave-up{
+    text-align: center;
+    height: 60vh;
+    margin-top:0;
+    padding: 0;
+    background-image: url(./img/layered-bg.svg);
+}
+@media only screen and (max-width: 600px) {
+    .spacer{
+        aspect-ratio: 960/300;
+        display: flex;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+        background-color: blanchedalmond;
+        text-align: center;
+        height: 100%;
+        background-image: url(./img/BG.png);
+    
+    }
+    .card-container {
+        flex-direction: column; /* Change to a column layout on small screens */
+    }
+
+    button {
+        flex: none; /* Remove the flex property to allow buttons to take full width */
+        width: 100%; /* Make buttons take full width on small screens */
+    }
+    #first-row{
+        
+        flex-direction: column;
+        margin: 20px;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+    #second-row{
+       
+        flex-direction: column;
+        margin: 20px;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        
+    }
+}
