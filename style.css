@@ -31,6 +31,7 @@ body{
 #nav-bar a{
     color: #005557;
     text-decoration: none;
+    font-size: 20px;
 }
 /* #first-wave{
     
@@ -50,7 +51,6 @@ body{
     background-position: center top ;
     background-size: cover;
     text-align: center;
-    font-size: larger;
     height: 130vh;
     background-image: url(./img/BG.png);
     margin-bottom: 40px;
@@ -129,6 +129,7 @@ body{
     justify-content: center;
     width: 100%;
 }
+
 #second-row{
     display: flex; 
     flex-direction: row;
@@ -140,16 +141,50 @@ body{
     
 }
 
+button{
+    border: none;
+    background-color: #9DCC42;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    font-weight: bold;
+    color: #005557;
+    /* background: linear-gradient(to right, rgba(3, 109, 107, 0.5), #9DCC42); */
+}
+#light-brown{
+    background-color: #F8DF9F;
+}
+
+#light-purple{
+    background-color: #DBCAD8;
+}
+
+#light-color{
+    background-color: #10B6B4;
+}
+
+#yellow{
+    background-color: #FFE459;
+}
+
+#light-red{
+    background-color: #F89F9F;
+}
+
+#light-green{
+    background-color: #B1F89F;
+}
+
 .card-container{
     flex:1;
     padding: 20px;
     margin: 30px;
-    border: 3px red solid;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: brown;
+    
 }
 img {
     max-width: 100%;
@@ -193,6 +228,11 @@ img {
     background-image: url(./img/layered-bg.svg);
 }
 @media only screen and (max-width: 600px) {
+    #nav-bar a{
+        color: #005557;
+        text-decoration: none;
+        font-size: 10px;
+    }
     .organs-categories {
         width: 80%; 
         margin: 0 auto; 
@@ -205,30 +245,30 @@ img {
         background-repeat: no-repeat;
         background-position: center top;
         background-size: cover;
-        background-color: blanchedalmond;
         text-align: center;
         height: 100%;
         background-image: url(./img/BG.png);
     
     }
+
     .card-container {
         flex-direction: column; /* Change to a column layout on small screens */
+
     }
 
-    button {
+    /* button {
         flex: none; /* Remove the flex property to allow buttons to take full width */
-        width: 100%; /* Make buttons take full width on small screens */
-    }
+        /* width: 100%; Make buttons take full width on small screens */
+   
     #first-row{
-        
         flex-direction: column;
         margin: 20px;
         gap: 10px;
         justify-content: center;
         width: 100%;
     }
+
     #second-row{
-       
         flex-direction: column;
         margin: 20px;
         gap: 10px;
