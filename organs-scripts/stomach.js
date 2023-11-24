@@ -31,37 +31,34 @@ fetch(apiUrl)
 
    const generateRecipesBtn = document.querySelector(".generateRecipesBtn");
    // Add an event listener to the button
+   //The arrow function is the callback function that gets executed when the button is clicked
    generateRecipesBtn.addEventListener('click', ()=> {
    // Use the existing data to generate recipes on button click
-       generateRecipes(globalData);
+        generateRecipes(globalData); 
+      
+      
    });  
 
-
-   // Function to generate recipes
+   //generateRecipes function then updates the content based on the random recipe data.
+   // This function is responsible for displaying or processing the recipes based on the provided data
    function generateRecipes(recipes){
        // Sample data (replace this with the actual recipe data)
       console.log("Recipes: ", recipes);
       const recipesData = recipes.map(recipe => ({
          name: recipe.recipeTittle,
          content: recipe.recipeDescription, 
-         // Generate a new Unsplash URL for each recipe
-         image: `https://source.unsplash.com/800x600/?food&${Math.random()}` // Adding a random parameter to get a different image each time
+         image: recipe.image
+         //  `https://source.unsplash.com/800x600/?food&${Math.random()}` // Adding a random parameter to get a different image each time
       }));
 
-      //https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-   
         // Getting the HTML div references for the recipe-content
          const recipeContentsArray = document.querySelectorAll(".recipe-content");
 
-        // Clear previous content in the container
-         // recipeContentsArray.forEach(recipeContent => {
-         //    recipeContent.innerHTML = '';
-         // });
-
         // Convert the NodeList to an array for easier iteration
-        Array.from(recipeContentsArray).forEach((recipeContent, index) => {
-            const recipeData = recipesData[index];
-            console.log('recipeData:', recipeData);
+        Array.from(recipeContentsArray).forEach((recipeContent) => {
+         // Generate a random index for each container
+        const randomIndex = Math.floor(Math.random() * recipesData.length);
+        const recipeData = recipesData[randomIndex];
 
         // Accessing the elements within the recipe container
         const recipeImage = recipeContent.querySelector('.recipe-image');
