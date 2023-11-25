@@ -1,5 +1,5 @@
 //wrap the JavaScript code in an event listener for the 'DOMContentLoaded' event:
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
 
 // const apiKey="7b69f97fbd564054bcf5536ac1af34bf"
 const organ = 'stomach';
@@ -11,7 +11,8 @@ let globalData; // Declare the variable outside the fetch block
 // Construct API request URL
 // const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${stomachIngredients}&apiKey=${apiKey}`;
 
-const apiUrl= `https://6557a470bd4bcef8b613033f.mockapi.io/RecipesGenerator`;
+const apiUrl= `https://65613af7dcd355c08323b50f.mockapi.io/RecipeGenerator`;
+// `https://6557a470bd4bcef8b613033f.mockapi.io/RecipesGenerator`;
 // Fetch recipes from the Spoonacular API
 //Make an API request using the Fetch API
 //the fetch operation is asynchrounous that means JavaScript doesn't wait for the request 
@@ -21,7 +22,7 @@ fetch(apiUrl)
    .then(response => response.json()) //Parse the response as JSON
    .then(data => {
    // Store the fetched data in the 'data' variable
-      globalData =data;
+      globalData = data;
     // Process the response data using the displayRecipes function for further processing
     generateRecipes(globalData);
     
@@ -29,61 +30,76 @@ fetch(apiUrl)
    //Error handling => If any errors occur during the fetch, they are caught and logged to the console
    .catch(error => console.error('Error: ', error));
 
-   const generateRecipesBtn = document.querySelector(".generateRecipesBtn");
+   const generateRecipeBtn = document.querySelector(".generateRecipesBtn");
+   const usedRecipeIds = new Set();// keep track of the IDs that have already been displayed
+
+   
    // Add an event listener to the button
    //The arrow function is the callback function that gets executed when the button is clicked
-   generateRecipesBtn.addEventListener('click', ()=> {
+   generateRecipeBtn.addEventListener('click', ()=> {
    // Use the existing data to generate recipes on button click
-        generateRecipes(globalData); 
-      
-      
-   });  
+      generateRecipes(globalData, 0, usedRecipeIds);
+      });  
 
    //generateRecipes function then updates the content based on the random recipe data.
    // This function is responsible for displaying or processing the recipes based on the provided data
-   function generateRecipes(recipes){
+   function generateRecipes(recipes, cardIndex, usedRecipeIds) {
        // Sample data (replace this with the actual recipe data)
       console.log("Recipes: ", recipes);
       const recipesData = recipes.map(recipe => ({
-         name: recipe.recipeTittle,
+         id: recipe.id,
+         name: recipe.recipeTitle,
          content: recipe.recipeDescription, 
          image: recipe.image
          //  `https://source.unsplash.com/800x600/?food&${Math.random()}` // Adding a random parameter to get a different image each time
       }));
 
         // Getting the HTML div references for the recipe-content
-         const recipeContentsArray = document.querySelectorAll(".recipe-content");
+        const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
+        
+           // Iterate through each recipe container
+         recipeContentsArray.forEach((recipeContent, index) => {
+      
+         // Get a random recipe that hasn't been displayed on the current card
+         let randomRecipeData;
+         do {
+             const randomIndex = Math.floor(Math.random() * recipesData.length);
+             randomRecipeData = recipesData[randomIndex];
+         } while (usedRecipeIds.has(randomRecipeData.id));
+ 
+         // Add the displayed recipe ID to the Set for the current card
+         usedRecipeIds.add(randomRecipeData.id);
+         
 
-        // Convert the NodeList to an array for easier iteration
-        Array.from(recipeContentsArray).forEach((recipeContent) => {
-         // Generate a random index for each container
-        const randomIndex = Math.floor(Math.random() * recipesData.length);
-        const recipeData = recipesData[randomIndex];
+         //   // Convert the NodeList to an array for easier iteration
+         //   Array.from(recipeContentsArray).forEach((recipeContent) => {
+         //    // Generate a random index for each container
+         //   const randomIndex = Math.floor(Math.random() * recipesData.length);
+         //   const recipeData = recipesData[randomIndex];
 
         // Accessing the elements within the recipe container
-        const recipeImage = recipeContent.querySelector('.recipe-image');
-        const recipeTitle = recipeContent.querySelector('.recipe-title');
-        const recipeDescription = recipeContent.querySelector('.recipe-description');
-       
-        console.log("recipeContent:", recipeContent);
-        console.log("this is type of the recipeData:"+typeof recipesData);
-        // Logging to check if elements are found
-         console.log("recipeImage:", recipeImage);
-         console.log("recipeTitle:", recipeTitle);
-         console.log("recipeDescription:", recipeDescription);
+        // Check if the NodeList has elements before accessing them
+      //   if (recipeContentsArray.length > 0) {
+           // Define recipeContent 
+            const recipeImage = document.querySelector('.recipe-image');
+            const recipeTitle = document.querySelector('.recipe-title');
+            const recipeDescription = document.querySelector('.recipe-description');
 
+            console.log("this is my recipe", recipeTitle, recipeDescription);
+             console.log(recipeTitle);
         // Updating the content based on the fetched data
          // recipeImage.src =recipeData.image;
          // Update content only if elements are found
          if (recipeImage && recipeTitle && recipeDescription) {
-            recipeImage.src = recipeData.image;
-            recipeTitle.textContent = recipeData.name;
-            recipeDescription.textContent = recipeData.content;
-         }
-     });
+            recipeImage.src = randomRecipeData.image;
+            recipeTitle.textContent = randomRecipeData.name;
+            recipeDescription.textContent = randomRecipeData.content;
+         // }
+      }
+   });
    }
    
-});
+
 
    /*
      //function displayRecipes(recipes){
