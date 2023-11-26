@@ -53,7 +53,6 @@ fetch(apiUrl)
          name: recipe.recipeTitle,
          content: recipe.recipeDescription, 
          image: recipe.image
-         //  `https://source.unsplash.com/800x600/?food&${Math.random()}` // Adding a random parameter to get a different image each time
       }));
 
       //   // Getting the HTML div references for the recipe-content
@@ -61,7 +60,11 @@ fetch(apiUrl)
         
            // Iterate through each recipe container
          recipeContentsArray.forEach((recipeContent, cardIndex) => {
-      
+            // Reset usedRecipeIds if all recipes have been displayed
+            //so when the button is clicked again, it will generate recipes again from scratch.
+            if (usedRecipeIdsArray[cardIndex].size === recipesData.length) {
+            usedRecipeIdsArray[cardIndex].clear();
+         }
          // Get a random recipe that hasn't been displayed on the current card
          let randomRecipeData;
          do {
