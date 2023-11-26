@@ -4,10 +4,9 @@ const usedRecipeIds = new Set();// keep track of the IDs that have already been 
 document.addEventListener('DOMContentLoaded', () => {
 
 // const apiKey="7b69f97fbd564054bcf5536ac1af34bf"
-const organ = 'stomach';
-//Replace 'tomato,garlic,onion' with the ingredients that match the organs
-const stomachIngredients = 'tomato,garlic,onion';
 let globalData; // Declare the variable outside the fetch block
+// Define recipeContentsArray 
+const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
 
 // make requests to the Spoonacular API's "Search Recipes by Ingredients" endpoint
 // Construct API request URL
@@ -34,16 +33,19 @@ fetch(apiUrl)
 
    const generateRecipeBtn = document.querySelector(".generateRecipesBtn");
    
+   // Keep track of used recipe IDs for each card
+   const usedRecipeIdsArray = Array.from({ length: recipeContentsArray.length }, () => new Set());
+
    // Add an event listener to the button
    //The arrow function is the callback function that gets executed when the button is clicked
    generateRecipeBtn.addEventListener('click', ()=> {
    // Use the existing data to generate recipes on button click
-      generateRecipes(globalData, 0, usedRecipeIds);
+      generateRecipes(globalData, usedRecipeIdsArray);
       });  
 
    //generateRecipes function then updates the content based on the random recipe data.
    // This function is responsible for displaying or processing the recipes based on the provided data
-   function generateRecipes(recipes, cardIndex, usedRecipeIds) {
+   function generateRecipes(recipes, usedRecipeIdsArray) {
        // Sample data (replace this with the actual recipe data)
       console.log("Recipes: ", recipes);
       const recipesData = recipes.map(recipe => ({
@@ -54,21 +56,21 @@ fetch(apiUrl)
          //  `https://source.unsplash.com/800x600/?food&${Math.random()}` // Adding a random parameter to get a different image each time
       }));
 
-        // Getting the HTML div references for the recipe-content
-        const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
+      //   // Getting the HTML div references for the recipe-content
+      //   const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
         
            // Iterate through each recipe container
-         recipeContentsArray.forEach((recipeContent, index) => {
+         recipeContentsArray.forEach((recipeContent, cardIndex) => {
       
          // Get a random recipe that hasn't been displayed on the current card
          let randomRecipeData;
          do {
              const randomIndex = Math.floor(Math.random() * recipesData.length);
              randomRecipeData = recipesData[randomIndex];
-         } while (usedRecipeIds.has(randomRecipeData.id));
+         } while (usedRecipeIdsArray[cardIndex].has(randomRecipeData.id));
  
-         // Add the displayed recipe ID to the Set for the current card
-         usedRecipeIds.add(randomRecipeData.id);
+         // Add the displayed recipe ID to the set for the current card
+         usedRecipeIdsArray[cardIndex].add(randomRecipeData.id);
          
 
          //   // Convert the NodeList to an array for easier iteration
