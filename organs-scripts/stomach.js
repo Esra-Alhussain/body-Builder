@@ -1,5 +1,7 @@
+const usedRecipeIds = new Set();// keep track of the IDs that have already been displayed
+
 //wrap the JavaScript code in an event listener for the 'DOMContentLoaded' event:
-// document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
 // const apiKey="7b69f97fbd564054bcf5536ac1af34bf"
 const organ = 'stomach';
@@ -31,8 +33,6 @@ fetch(apiUrl)
    .catch(error => console.error('Error: ', error));
 
    const generateRecipeBtn = document.querySelector(".generateRecipesBtn");
-   const usedRecipeIds = new Set();// keep track of the IDs that have already been displayed
-
    
    // Add an event listener to the button
    //The arrow function is the callback function that gets executed when the button is clicked
@@ -79,11 +79,11 @@ fetch(apiUrl)
 
         // Accessing the elements within the recipe container
         // Check if the NodeList has elements before accessing them
-      //   if (recipeContentsArray.length > 0) {
+         if (recipeContentsArray.length > 0) {
            // Define recipeContent 
-            const recipeImage = document.querySelector('.recipe-image');
-            const recipeTitle = document.querySelector('.recipe-title');
-            const recipeDescription = document.querySelector('.recipe-description');
+            const recipeImage = recipeContent.querySelector('.recipe-image');
+            const recipeTitle = recipeContent.querySelector('.recipe-title');
+            const recipeDescription = recipeContent.querySelector('.recipe-description');
 
             console.log("this is my recipe", recipeTitle, recipeDescription);
              console.log(recipeTitle);
@@ -96,8 +96,10 @@ fetch(apiUrl)
             recipeDescription.textContent = randomRecipeData.content;
          // }
       }
+   }
    });
    }
+  });
    
 
 
