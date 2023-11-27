@@ -33,6 +33,9 @@
             <div class="recipe-content" data-index="0">
                 <img class="recipe-image" src="../img/6.png">
                     <h3 class="recipe-title">Recipe Title</h3>
+                    <p class=" recipe-Ingredients">
+                        Recipe Ingredients
+                    </p>
                     <p class="recipe-description">
                     hyhhhhhhhhhhh
                     jjjjjjjjjjjjjjj
@@ -40,12 +43,17 @@
                     jjjjjjjjjjjjjj
                     jjjjjjjjjj
                    </p>
+                   <button class="like-button">Like</button>
+                   <span class="like-counter">0</span>
                 </div>
 
             <div class="recipe-content" data-index="1">
                 <img class="recipe-image" src="../img/6.png">
 
                     <h3 class="recipe-title">Recipe Title</h3>
+                    <p class=" recipe-Ingredients">
+                        Recipe Ingredients
+                    </p>
                     <p class="recipe-description">
                     hyhhhhhhhhhhh
                     jjjjjjjjjjjjjjj
@@ -53,14 +61,17 @@
                     jjjjjjjjjjjjjj
                     jjjjjjjjjj
                     </p>
-                    
-
+                    <button class="like-button">Like</button>
+                    <span class="like-counter">0</span>
             </div>
             <!-- data-index="3"
             to store the index associated with each card. -->
             <div class="recipe-content" data-index="2">
              <img class="recipe-image" src="../img/6.png">
                     <h3 class="recipe-title">Recipe Title</h3>
+                    <p class=" recipe-Ingredients">
+                        Recipe Ingredients
+                    </p>
                     <p class="recipe-description">
                       hyhhhhhhhhhhh
                      jjjjjjjjjjjjjjj
@@ -68,10 +79,46 @@
                      jjjjjjjjjjjjjj
                      jjjjjjjjjj
                     </p>
+                    <button class="like-button">Like</button>
+                    <span class="like-counter">0</span>
             </div>
         <!-- </div> -->
 
     </section>
+
+    <section class="feedback">
+        
+        <form id="feedbackForm">
+            <h2 id="feedbackTitle">Feedback Form</h2>
+            <!-- Recipe Name -->
+            <label for="recipeName">Recipe Name:</label>
+            <input type="text" id="recipeName" name="recipe-name" class="recipeName" required>
+    
+            <!-- Person Name -->
+            <div class="text-area">
+            <label for="personName">Your Name:</label>
+            <input type="text" id="personName" name="person-name" required>
+            </div>
+            <!-- Email -->
+            <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            </div>
+            <!-- Display an error message for invalid email format -->
+            <span id="emailError" style="color: red;"></span>
+    
+            <!-- Message -->
+            <div class="text-area">
+            <label for="message" id="message-label">Message:</label>
+            </div>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <!-- Submit Button -->
+            <button type="button" id="submit-button">Submit Feedback</button>
+        </form>
+    </section>
+    
+    
 
 </body>
 <script src="../organs-scripts/stomach.js"></script>

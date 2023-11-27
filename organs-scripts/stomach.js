@@ -31,29 +31,101 @@ fetch(apiUrl)
    //Error handling => If any errors occur during the fetch, they are caught and logged to the console
    .catch(error => console.error('Error: ', error));
 
-   const generateRecipeBtn = document.querySelector(".generateRecipesBtn");
-   
-   // Keep track of used recipe IDs for each card
-   const usedRecipeIdsArray = Array.from({ length: recipeContentsArray.length }, () => new Set());
+   function postFeedback (feedbackData){
+      const apiUrl = `https://65613af7dcd355c08323b50f.mockapi.io/feedback`;
 
-   // Add an event listener to the button
-   //The arrow function is the callback function that gets executed when the button is clicked
-   generateRecipeBtn.addEventListener('click', ()=> {
-   // Use the existing data to generate recipes on button click
-      generateRecipes(globalData, usedRecipeIdsArray);
-      });  
+      // Make a POST request to the API to add feedback
+      fetch(apiUrl, { 
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(feedbackData),
+      })
+         .then(response => {
+            console.log('API Response:', response);
+            return response.json()})
+         .then(data => {
+            console.log('Feedback posted successfully:', data);
+         })
+         .catch(error => { // Handle errors
+            console.log('Error posting feedback:', error);
+         });
+   }
 
-   //generateRecipes function then updates the content based on the random recipe data.
-   // This function is responsible for displaying or processing the recipes based on the provided data
-   function generateRecipes(recipes, usedRecipeIdsArray) {
-       // Sample data (replace this with the actual recipe data)
-      console.log("Recipes: ", recipes);
-      const recipesData = recipes.map(recipe => ({
-         id: recipe.id,
-         name: recipe.recipeTitle,
-         content: recipe.recipeDescription, 
-         image: recipe.image
-      }));
+     
+       document.getElementById('submit-button').addEventListener('click', submitFeedback);
+          
+       //Function to handle form submission and show thank you message
+       // retrieve the values entered by the user in the form fields 
+       // get a reference to an HTML 
+       function submitFeedback(){
+          //Get feedback values form
+          const recipeName = document.getElementById('recipeName').value;
+          const personName = document.getElementById('personName').value;
+          const email = document.getElementById('email').value;
+          const message = document.getElementById('message').value;
+
+          const form = document.getElementById('feedbackForm');
+          if (!form.checkValidity()){
+            // If form is not valid, prevent submission.
+            //check form validation(all required fields are filled)
+            form.reportValidity();
+            return;
+          }
+
+          // Function to validate email format using a regular expression
+         function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+         }
+          // Additional email validation
+         if (!isValidEmail(email)) {
+            // Display an error message for invalid email format
+            document.getElementById('emailError').textContent = 'Invalid email format';
+            return;
+      }
+
+          // Prepare feedback data by creating a feedback object that holds the feedback information properties
+          const feedbackData = {
+            recipeName: recipeName,
+            personName: personName,
+            email: email,
+            message: message
+         };
+         // Post feedback to the mock API
+          postFeedback(feedbackData);
+
+          // Show thank you message and hide the form
+         const feedbackForm = document.getElementById('feedbackForm');
+         feedbackForm.innerHTML = '<p>Thank you for your feedback!</p>';
+       }
+
+
+         const generateRecipeBtn = document.querySelector(".generateRecipesBtn");
+         
+         // Keep track of used recipe IDs for each card
+         const usedRecipeIdsArray = Array.from({ length: recipeContentsArray.length }, () => new Set());
+
+         // Add an event listener to the button
+         //The arrow function is the callback function that gets executed when the button is clicked
+         generateRecipeBtn.addEventListener('click', ()=> {
+         // Use the existing data to generate recipes on button click
+            generateRecipes(globalData, usedRecipeIdsArray);
+            });  
+
+         //generateRecipes function then updates the content based on the random recipe data.
+         // This function is responsible for displaying or processing the recipes based on the provided data
+         function generateRecipes(recipes, usedRecipeIdsArray) {
+            // Sample data (replace this with the actual recipe data)
+            console.log("Recipes: ", recipes);
+            const recipesData = recipes.map(recipe => ({
+               id: recipe.id,
+               name: recipe.recipeTitle,
+               recipeIngredients: recipe.recipeIngredients.join(', '),
+               content: recipe.recipeDescription, 
+               image: recipe.image
+         }));
 
       //   // Getting the HTML div references for the recipe-content
       //   const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
@@ -88,17 +160,22 @@ fetch(apiUrl)
            // Define recipeContent 
             const recipeImage = recipeContent.querySelector('.recipe-image');
             const recipeTitle = recipeContent.querySelector('.recipe-title');
+            const recipe_Ingredients = recipeContent.querySelector('.recipe-Ingredients');
             const recipeDescription = recipeContent.querySelector('.recipe-description');
 
             console.log("this is my recipe", recipeTitle, recipeDescription);
-             console.log(recipeTitle);
+             console.log(recipe_Ingredients);
+             
         // Updating the content based on the fetched data
          // recipeImage.src =recipeData.image;
          // Update content only if elements are found
-         if (recipeImage && recipeTitle && recipeDescription) {
+         if (recipeImage && recipeTitle &&recipe_Ingredients) {
             recipeImage.src = randomRecipeData.image;
             recipeTitle.textContent = randomRecipeData.name;
             recipeDescription.textContent = randomRecipeData.content;
+            recipe_Ingredients.textContent = randomRecipeData.recipeIngredients;
+            // if (recipeImage && recipeTitle && recipeDescription &&recipe_Ingredients) {
+
          // }
       }
    }
