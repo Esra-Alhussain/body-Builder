@@ -47,7 +47,7 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 ## Acknowledgements
 
-- Special thanks to [Mock API](https://example.com/mock-api) for providing recipe data.
+The recipe data in this API was manually created and entered by me for educational and demonstration purposes.
 
 ## Contact
 
