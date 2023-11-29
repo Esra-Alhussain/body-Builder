@@ -23,7 +23,7 @@ console.log(`this is organ param`, organ)
 
  // Update background picture based on the organ
  const organImg = document.getElementById('organImg');
- organImg.src = `./img/${organ}-bg.png`;
+ organImg.src = `img/${organ}-bg.png`;
 
  
 // make requests to the Spoonacular API's "Search Recipes by Ingredients" endpoint
