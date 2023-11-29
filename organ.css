@@ -18,15 +18,17 @@ html{
     box-sizing: border-box;
 }
 
+.generateRecipesBtn{
+    cursor: pointer;
+}
 .background-container{
     /* width: 100%;
     height: auto;  
-    position: relative;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 0; */
     position: relative;
+    cursor: pointer;
 }
 
 #nav-bar{
