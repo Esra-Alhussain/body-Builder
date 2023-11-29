@@ -31,18 +31,18 @@ html{
 
 #nav-bar{
     display:flex;
-    padding: 6%;
+    padding: 5%;
+    padding-left: 23%;
     /* flex:1; */
     justify-content: center;
     height: 7vh; 
     width: auto;
     align-items: center;  
     position:absolute; 
-    z-index: 1;  
-    left: 50%; 
-    margin: 2vh;
+    /* z-index: 1;   */
+    /* left: 50%;  */
     text-align: center;
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
 }
 
 #nav-bar ul{
@@ -58,7 +58,7 @@ html{
 #nav-bar a{
     color: #005557;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1.5em;;
 }
 
 .wrapper {
@@ -271,16 +271,36 @@ button{
 }
 
 @media only screen and (max-width: 600px) {
+    #nav-bar{
+        display:flex;
+        padding: 4%;
+        padding-left: 12%;
+        /* flex:1; */
+        justify-content: center;
+        height: 7vh; 
+        width: auto;
+        align-items: center;  
+        position:absolute; 
+        /* z-index: 1;   */
+        /* left: 50%;  */
+        text-align: center;
+        /* transform: translateX(-50%); */
+    }
    
+    #nav-bar ul{
+        list-style: none;
+        display: flex;
+        margin: 3vw;
+    }
     #nav-bar li{
-        margin: 0 20px;
+        margin: 0 4vw;
         justify-content: center;
         text-align: center;
     }
     #nav-bar a{
         color: #005557;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 1em;;
         text-align: center;
         justify-content: center;
         text-align: center;

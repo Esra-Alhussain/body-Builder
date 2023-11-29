@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="organ.css">
     <title>Stomach</title>
 </head>
 <body>
     <div class="wrapper">
-        <img src="../img/Stomach-bg.png" class="background-container">
+        <img id="organImg" src="../img/Stomach-bg.png" class="background-container">
 
     <header id="nav-bar">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">How to use</a></li>
                 <li><a href="#">Log In</a></li>
             </ul>
         </nav>
     </header>
-
+    
     </div>
     <section class="first-container"> 
         <div class="sub-title">
        <h1>Get your personalized</h1>
        <h1>Recipe</h1>
-       <button class="generateRecipesBtn">Generate Recipes</button>
+       <button id="stomachButton" class="generateRecipesBtn">Generate Recipes</button>
         </div>
 
         <!-- <div class="Recipes"> -->
@@ -121,5 +121,11 @@
     
 
 </body>
-<script src="../organs-scripts/stomach.js"></script>
+<!-- <script src="organ.js"></script> -->
+
+<script src="organ.js">
+    //  const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+</script>
+
 </html>

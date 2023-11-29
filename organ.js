@@ -12,13 +12,24 @@ const recipeContentsArray = document.querySelectorAll(`.recipe-content`);
 // Initialize usedRecipeIdsArray outside the event listener to make it accessible globally
 let usedRecipeIdsArray = Array.from({ length: recipeContentsArray.length }, () => new Set());
 
-
  // Initialize the global set to keep track of all used recipe IDs
  usedRecipeIds = new Set();
+
+ // Retrieve organ parameter from the URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const organ = urlParams.get('organ');
+console.log(`this is organ param`, organ)
+
+ // Update background picture based on the organ
+ const organImg = document.getElementById('organImg');
+ organImg.src = `../img/${organ}-bg.png`;
+
+ 
 // make requests to the Spoonacular API's "Search Recipes by Ingredients" endpoint
 // Construct API request URL
 
-const apiUrl= `https://65613af7dcd355c08323b50f.mockapi.io/RecipeGenerator`;
+const apiUrl= `https://65613af7dcd355c08323b50f.mockapi.io/RecipeGenerator?organ=${organ}`;
 
 // Fetch recipes from the Spoonacular API
 //Make an API request using the Fetch API
@@ -28,9 +39,11 @@ fetch(apiUrl)
 //.then() method is used to handle the fulfillment of the Promise. It takes a callback function that will be executed when the Promise is resolved (when the API request is complete).
    .then(response => response.json()) //Parse the response as JSON
    .then(data => {
+    //   const filteredData = data.filter(item => item.organ === organ);
    // Store the fetched data in the 'data' variable
       globalData = data;
-      
+      console.log(`this is the urlParams`, organ);
+
       console.log(`this is the global data`, globalData);
 
     // Process the response data using the displayRecipes function for further processing
@@ -40,6 +53,7 @@ fetch(apiUrl)
    //Error handling => If any errors occur during the fetch, they are caught and logged to the console
    .catch(error => console.error('Error: ', error));
 
+   
    function postFeedback (feedbackData){
       const apiUrl = `https://65613af7dcd355c08323b50f.mockapi.io/feedback`;
 
