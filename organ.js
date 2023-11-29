@@ -270,7 +270,7 @@ fetch(apiUrl)
    });
    }
    // Call the function to set default recipes
-   setDefaultRecipes();
+//    setDefaultRecipes();
   });
    
    // .then() part is crucial for managing the asynchronous nature of API requests and ensuring that we handle the data when it becomes available,
